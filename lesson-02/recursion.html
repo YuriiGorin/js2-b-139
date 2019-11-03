@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Рекурсия</title>
+    <script>
+        // NFE
+        const factorial = function f(n) {
+            if (n === 0 || n === 1) {
+                return 1;
+            }
+
+            return f(n - 1) * n;
+        };
+
+        const f2 = n => n === 0 || n === 1 ? 1 : n * f2(n -1);
+
+
+        console.log(factorial(5)); // 120
+
+        console.log(factorial(4) === f2(4)); // 24
+
+        console.log(factorial(10000));
+
+        const nod = function(a, b) {
+            while (a !== b) {
+                if (a > b) {
+                    a -= b;
+                } else if (a < b) {
+                    b -= a;
+                }
+            }
+            return a;
+        };
+
+        const nod2 = function(a, b) {
+            if (a > b) { nod2(a - b, b);
+                return
+            } else if (a < b) {
+                return nod2(a, b - a);
+            }
+
+            return a;
+        };
+
+
+        console.log(nod2(40, 40));
+    </script>
+</head>
+<body>
+
+</body>
+</html>

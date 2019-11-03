@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Функции обратного вызова</title>
+    <script>
+        const delay = function(callback) {
+            if (typeof callback === "function") {
+                setTimeout(callback, 2500);
+            } else {
+                // выброс исключения, т.е. ошибки
+                // в таком случае выполнение скрипта прекращается
+                throw new TypeError("Допускается только функции в виде аргумента");
+            }
+        };
+
+
+        delay(() => {
+            console.log("Тест");
+
+            delay(function() {
+               // alert("Ещё задержка");
+               delay(123);
+            });
+        });
+
+        // вывод в консоль нескольких аргументов
+        console.log("test", 123, "234234234", 433);
+
+        const displayItem = function(item, index) {
+            document.write(`${item} (${index})<hr>`);
+        };
+
+        const list = ["Какой-то текст", "Что-то ещё", "И что-то ещё"];
+        // list.forEach(alert);
+        list.forEach(console.log);
+        list.forEach(displayItem);
+
+
+        const myForEach = function(arr, fn) {
+            for (let i=0; i<arr.length; i++) {
+                // вызов callback-функции
+                fn(arr[i], i, arr);
+            }
+        };
+
+        myForEach(list, alert);
+        myForEach(list, console.log);
+        myForEach(list, displayItem);
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

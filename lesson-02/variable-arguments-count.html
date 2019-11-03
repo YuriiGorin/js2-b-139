@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Произвольное кол-во аргументов в функции</title>
+    <script>
+        // const sum = function() {
+        //     let total = 0;
+        // arguments - массивоподобный объект, не обладает никакими методами массивов
+        //     for (let i=0; i<arguments.length; i++) {
+        //         total += arguments[i];
+        //     }
+        //     return total;
+        // };
+
+        // с rest-оператором образуется массив, в отличие от arguments
+        const sum = function(...numbers) {
+            let total = 0;
+            numbers.forEach(n => total += n);
+            return total;
+        };
+
+        let result = sum(5, 10, 3, 1);
+        console.log(result);
+
+        // написать функцию
+        const calculate = function() {};
+
+        let n = calculate(10.95, Math.ceil, x => x*x, n => n / 2, Math.floor);
+        console.log(n); // 60
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

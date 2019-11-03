@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Функции - объекты</title>
+    <script>
+        // NFE - Named Function Expression
+        // именованное функциональное выражение
+        const test = function fn() {
+            if (typeof fn.counter === "undefined") {
+                fn.counter = 0;
+            }
+            fn.counter++;
+            console.log(`Это вызов номер ${test.counter}`);
+        };
+
+
+        test();
+        test();
+        // это вызов #3
+        test();
+
+        alert(test.counter);
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
