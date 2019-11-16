@@ -17,3 +17,7 @@ students.forEach(({ name }) => console.log(name));
 
 
 students.map(({ name }) => name.toUpperCase());
+
+
+const oldest = students.reduce((acc, item) => acc.age < item.age ? item : acc);
+console.log("Старший студент", oldest);
