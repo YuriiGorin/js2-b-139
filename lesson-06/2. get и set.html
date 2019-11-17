@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Геттеры и сеттеры свойств</title>
+    <script>
+        "use strict";
+        const sexSym = Symbol();
+
+        const user = {
+            name: "Johny",
+            lastName: "Green",
+            [sexSym]: "f",
+
+            get fullName() {
+                return `${this.name} ${this.lastName}`;
+            },
+        };
+
+        // delete user.fullName;
+
+        // user.sexSym
+
+        Object.defineProperty(user, "age", {
+            get() {
+                return 18;
+            },
+        });
+
+        Object.defineProperty(user, "sex", {
+            // вызывается при каждом чтении свойства
+            get() {
+                return this[sexSym];
+            },
+            // при каждой попытке записи значения
+            set(newVal) {
+                if (newVal === "f" || newVal === "m") {
+                    this[sexSym] = newVal;
+                } else {
+                    throw new Error("Укажите правильный пол");
+                }
+            },
+        });
+
+        // Object.defineProperty(user, "fullName", {
+        //     get() {
+        //         return `${this.name} ${this.lastName}`;
+        //     },
+        // });
+
+       // delete user.sex;
+
+
+        console.log(user.fullName);
+        user.name = "test";
+        console.log(user.fullName);
+
+        user.sex = "m";
+       // user._sex = "sdfsdfsdf";
+        console.log(user.sex);
+       // user.fullName = "sdfsdfsdf";
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

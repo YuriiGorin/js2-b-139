@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>реактивные объекты на базе геттеров и сеттеров</title>
+    <script>
+        "use strict";
+
+        const reactive = function(state, appElement) {
+            const data = {
+                $originalData: {},
+            };
+
+            const content = appElement.innerHTML;
+            appElement.innerHTML = "";
+
+            const generateContent = function() {
+                let html = content;
+                for (const key in data.$originalData) {
+                    html = html.replace(`{{ ${key} }}`, data.$originalData[key]);
+                }
+                return html;
+            };
+
+            for (let key in state) {
+                // копирование свойств объекта (возможны ошибки, т.к. таким образом можно получить свойства прототипа)
+                data.$originalData[key] = state[key];
+
+                Object.defineProperty(data, key, {
+                    get() {
+                        return data.$originalData[key];
+                    },
+                    set(newVal) {
+                        console.log(`Попытка изменения свойства ${key}`);
+                        data.$originalData[key] = newVal;
+                        appElement.innerHTML = generateContent();
+                    },
+                });
+            }
+
+            return data;
+        };
+
+
+        window.addEventListener("load", function() {
+            const app = document.querySelector("#app");
+
+            const data = reactive({
+                title: "Это заголовок",
+                counter: 0,
+                // something: "",
+            }, app);
+
+            console.log(data.$originalData);
+
+            data.something = "sdfsdf";
+
+            console.log(data);
+
+
+            setInterval(() => { data.counter++ }, 1000);
+        });
+
+
+
+
+    </script>
+</head>
+<body>
+    <div id="app">
+        <h1>{{ title }}</h1>
+        <button data-event-click="method">test</button>
+        <p>Значение счетчика: {{ counter }}</p>
+        <p>test {{ something }}</p>
+    </div>
+</body>
+</html>

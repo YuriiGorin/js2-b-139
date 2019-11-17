@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Дескрипторы</title>
+    <script>
+         "use strict";
+        const coords = { x: 100, y: 150 };
+        const arr = new Array(100, 200, 300);
+        // arr.test = "...";
+
+        for (const key in arr) {
+            console.log(key);
+        }
+
+        // console.table(arr);
+
+        Object.defineProperty(coords, "test", {
+            value: 15,
+            writable: false, // запись значений запрещена
+            configurable: false, // запрещает удаление свойства и изменение дескрипторов
+            enumerable: true, // разрешили перечислять for in
+        });
+
+        console.log(coords.test);
+
+       // coords.test = "...";
+       //  delete coords.test;
+       //  coords.test = "...";
+
+        console.log(coords.test);
+
+        for (const key in coords) {
+            console.log(key);
+        }
+
+
+        // console.log(arr.length);
+
+        // вернет массив ключей из объекта
+        console.log(Object.keys(coords));
+    </script>
+</head>
+<body>
+
+</body>
+</html>
