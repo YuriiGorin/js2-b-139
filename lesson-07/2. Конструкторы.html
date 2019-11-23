@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Функции-конструкторы</title>
+    <script>
+        const User = function(name, age) {
+            this.name = name;
+            this.age = age;
+
+            this.hi = function() {
+                console.log("heeeey!");
+            };
+        };
+
+        User.prototype.test = "...";
+
+        User.prototype.getInfo = function() {
+            return `${this.name} - ${this.age}`;
+        };
+
+        const obj = new User("John", 19);
+        console.log(obj);
+
+        console.log(obj.hasOwnProperty("name"));
+
+        console.log(obj.test);
+
+        console.log(User.prototype.__proto__ === Object.prototype);
+
+        console.log(obj.getInfo());
+
+        obj.hi();
+    </script>
+</head>
+<body>
+
+</body>
+</html>

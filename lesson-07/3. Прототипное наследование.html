@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Прототипное наследование</title>
+    <script>
+        const Animal = function(name, age) {
+            if (name !== "") {
+                this.name = name;
+            } else {
+                throw new Error("Необходимо указать имя");
+            }
+
+            this.age = age;
+            this.alive = true;
+        };
+
+        Animal.prototype.eat = function() {
+            console.log(`${this.name} пытается поесть`);
+        };
+
+        Animal.prototype.sleep = function() {
+            console.log(`${this.name} пытается поспать`);
+        };
+
+
+        const Cat = function() {
+           // Animal.call(this, name, age);
+            Animal.apply(this, arguments);
+        };
+
+        //  Cat.prototype.__proto__ = Animal.prototype;
+        Object.setPrototypeOf(Cat.prototype, Animal.prototype);
+
+        Cat.prototype.meow = function() {
+            console.log(`${this.name} говорит мяяяяууу`);
+        };
+
+
+        const barsik = new Cat("Барсик", 10);
+        barsik.eat();
+        barsik.meow();
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

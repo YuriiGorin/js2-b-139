@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Прототипы</title>
+    <script>
+        "use strict";
+        const obj = {
+            toString() {
+                return "test!";
+            },
+            a: 100,
+            b: 200,
+        };
+        console.log(obj.toString());
+        console.log(obj);
+
+        // Object.create() создаёт пустой объект, устанавливая ему прототипом указанный другой объект
+        const obj2 = Object.create(obj);
+        obj2.c = "......";
+        console.log(obj2.toString());
+
+        console.log(obj2.__proto__.__proto__.__proto__);
+
+        if ("toString" in obj2) {
+            console.log("У объекта доступно свойство toString");
+        }
+
+        for (const key in obj2) {
+            // проверяем, является ли свойство с именем key
+            // собственным (hasOwnProperty вернёт false, если нет)
+            if (obj2.hasOwnProperty(key)) {
+                console.log(key);
+            }
+        }
+
+        const test = Object.create(null);
+        console.log(test.__proto__);
+
+        const obj_0 = Object.create({});
+        obj_0.x = 100;
+        obj_0.y = 200;
+        const obj_1 = Object.create(obj_0);
+        obj_1.x = 180;
+        obj_1.z = 300;
+        const obj_2 = Object.create(obj_1);
+        obj_2.x = 270;
+        obj_2.a = 150;
+        const obj_3 = Object.create(obj_2);
+        obj_3.b = 150;
+
+        const getValues = function(obj, key) {
+            const values = [];
+            while(obj !== null) {
+                if (obj.hasOwnProperty(key)) {
+                    values.push(obj[key]);
+                }
+
+                obj = Object.getPrototypeOf(obj);
+            }
+            return values;
+        };
+
+
+        console.log(getValues(obj_3, "x"));
+        console.log(getValues(obj_3, "b"));
+    </script>
+</head>
+<body>
+
+</body>
+</html>
