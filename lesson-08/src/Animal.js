@@ -6,10 +6,12 @@ class Animal {
 
     eat() {
         console.log(`${this.name} пытается поесть`);
+        return this;
     }
 
     sleep() {
         console.log(`${this.name} пытается поспать`);
+        return this;
     }
 }
 

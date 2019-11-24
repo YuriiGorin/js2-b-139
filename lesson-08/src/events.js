@@ -1,4 +1,5 @@
-"use strict";
+import Table from "./Table";
+
 window.addEventListener("load", function () {
 
     const usersContainer = document.querySelector("#users");
@@ -9,10 +10,10 @@ window.addEventListener("load", function () {
         tableClass: "table table-bordered table-hover"
     });
 
-    // users.addHeadingsRow("Имя", "Возраст", "Email")
-    //     .addRow("Иван", 39, "ivan@yandex.ru")
-    //     .addRow("Светлана", 19, "svetko@mail.ru")
-    //     .addRow("Наталья", 23, "nataly@gmail.com");
+    users.addHeadingsRow("Имя", "Возраст", "Email")
+        .addRow("Иван", 39, "ivan@yandex.ru")
+        .addRow("Светлана", 19, "svetko@mail.ru")
+        .addRow("Наталья", 23, "nataly@gmail.com");
 
     users.addHeadingsRow("Имя", "Возраст", "Email");
     users.addRow("Иван", 39, "ivan@yandex.ru");
