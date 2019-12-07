@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Асинхронный код</title>
+    <style>
+        .square {
+            width: 100px;
+            height: 100px;
+            background: #000;
+            animation: squareAnimation 0.5s infinite;
+        }
+
+        @keyframes squareAnimation {
+            100% { background: #f00; }
+        }
+    </style>
+    <script>
+        window.addEventListener("load", () => {
+            const sync = document.querySelector("#sync");
+            const asyncBtn = document.querySelector("#async");
+            sync.addEventListener("click", () => {
+                console.time("sync");
+                let total = 0;
+                for (let i=0; i<5000; i++) {
+                    total += i;
+                    console.log(i);
+                }
+                console.timeEnd("sync");
+                console.log(total);
+            });
+
+            asyncBtn.addEventListener("click", () => {
+               console.time("async");
+               let total = 0;
+               let i = 0;
+               const timer = setInterval(() => {
+                   total += i;
+                   console.log(i);
+                   i++;
+                   if (i>=4999) {
+                       clearInterval(timer);
+                       console.timeEnd("async");
+                       console.log(total);
+                   }
+               }, 0);
+            });
+        });
+    </script>
+</head>
+<body>
+    <button id="sync">Синхронный расчёт</button>
+    <button id="async">Асинхронный расчёт</button>
+    <div class="square"></div>
+</body>
+</html>
