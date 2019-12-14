@@ -1,0 +1,29 @@
+button {
+    display: inline-block;
+    background: transparent;
+    font-family: inherit;
+    outline: none;
+    cursor: pointer;
+    border: 0;
+}
+*,*::before,*::after {
+    box-sizing: inherit;
+}
+
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;
+}
+
+body {
+    margin: 0;
+    font-size: 1.6rem;
+}
+footer {
+    border-top: 10px solid;
+    margin: 0 auto;
+}
+header {
+    padding: 10px;
+    border: 1px;
+}
