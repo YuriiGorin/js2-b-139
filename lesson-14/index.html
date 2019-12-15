@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>SWAPI TEST</title>
+    <link rel="stylesheet" href="css/index.css">
+    <style>
+        .cards {
+            display: flex;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+<body>
+<div class="frame">
+    <div class="cardContainer">
+        <h3 class="catalogTitle">Каталог фильмов</h3>
+        <div>
+            <input class="search" id="searchInput" placeholder="Введите название">
+        </div>
+
+        <div class="cards">
+
+        </div>
+
+        <div class="loaderCard__Container">
+            <div class="loaderCard"></div>
+        </div>
+
+        <button id="loadFilms" class="btn info">Показать ещё</button>
+    </div>
+</div>
+<script type="text/x-template" id="card-template">
+    <div class="loader"></div>
+    <div class="img__pixabay"></div>
+    <div class="container">
+        <h4 class="filmTitle"><a class="filmUrl" href="{%url%}">{%title%}</a></h4>
+        <p class="director">{%director%}</p>
+    </div>
+</script>
+<script src="dist/main.js"></script>
+</body>
+</html>
