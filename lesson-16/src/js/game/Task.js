@@ -38,7 +38,7 @@ export default class Task {
     }
 
     _shuffle(str) {
-        let arr = [...str];
+        const arr = [...str];
         for (const [key, val] of arr.entries()) {
             const rand = Math.floor(Math.random() * arr.length);
             arr[key] = arr[rand];

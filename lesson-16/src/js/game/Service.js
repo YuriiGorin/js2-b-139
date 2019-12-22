@@ -25,7 +25,7 @@ export default class Service {
     }
 
     _getItemFromStorage(key) {
-        let item = localStorage.getItem(key);
+        const item = localStorage.getItem(key);
         if (item !== null) {
             return JSON.parse(item);
         }

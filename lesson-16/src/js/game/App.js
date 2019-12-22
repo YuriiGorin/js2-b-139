@@ -57,14 +57,14 @@ export default class App {
     }
 
     save() {
-        this._service.saveRestoreData( {
+        this._service.saveRestoreData({
             currentTask: this._currentTaskNumber,
-            tasks: this._tasks.map(task => task.getAnswer()),
+            tasks: this._tasks.map((task) => task.getAnswer()),
         });
     }
 
     restore() {
-        let data = this._service.getRestoreData();
+        const data = this._service.getRestoreData();
         if (data) {
             this._currentTaskNumber = parseFloat(data.currentTask);
             this._start(data.tasks).catch(console.error);
@@ -96,13 +96,13 @@ export default class App {
                     const data = await this._service.getTasksData({});
                     await this._start(data);
                 }
-               res();
+                res();
             }, 0);
         });
     }
 
     async _start(tasks) {
-        this._tasks = tasks.map(item => new Task({ content: item }));
+        this._tasks = tasks.map((item) => new Task({ content: item }));
         this._notify("ready");
         this._notify("task:changed");
     }
